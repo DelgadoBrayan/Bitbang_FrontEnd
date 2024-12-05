@@ -4,11 +4,12 @@ import { update } from '../service/updateProduct'
 export const CardUpdate = ({isOpen,contact, close, reload}) => {
     const [name, setName] = useState()
     const [number, setNumber] = useState()
-    const [email, setEmail] = useState()
+    const [gmail, setEmail] = useState()
     const updateProduct = async()=>{
         try {
             // function to update the product located in the services
-          await update(contact.id, name,number,email) 
+           
+          await update(contact._id, name,number,gmail) 
           //function to refresh the letters and see the update
            reload()
           //function close modal
@@ -36,7 +37,7 @@ export const CardUpdate = ({isOpen,contact, close, reload}) => {
             className="shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="name"
             type="text"
-            placeholder={''}
+            placeholder={contact.name}
             onChange={(e) => setName(e.target.value)}
             />
             <label htmlFor="" className='text-lg mt-5'>Numero</label>
@@ -44,7 +45,7 @@ export const CardUpdate = ({isOpen,contact, close, reload}) => {
             className="shadow  appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="number"
             type="text"
-            placeholder={''}
+            placeholder={contact.number}
             onChange={(e) => setNumber(e.target.value)}
             />
             <label htmlFor="" className='text-lg mt-5'>Email</label>
@@ -52,11 +53,11 @@ export const CardUpdate = ({isOpen,contact, close, reload}) => {
             className="shadow  appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="gmail"
             type="gmail"
-            placeholder={''}
+            placeholder={contact.gmail}
             onChange={(e) => setEmail(e.target.value)}
             />
         </div>
-        <button onClick={() => updateProduct()} type="button" className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 mt-5 rounded-lg text-xl font-bold px-5 py-2.5 text-center me-2 ">Agregar</button>
+        <button onClick={() => updateProduct()} type="button" className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 mt-5 rounded-lg text-xl font-bold px-5 py-2.5 text-center me-2 ">Actualizar</button>
     </div>
 </div>
 }

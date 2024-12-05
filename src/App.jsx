@@ -1,7 +1,7 @@
 import { BrowserRouter, useRoutes } from "react-router-dom"
 import { AddContact } from "./pages/Contact/addContact"
 import { Login } from "./pages/Login/Login"
-import { Register } from "./pages/Login/Regiater"
+import { Register } from "./pages/Login/Register"
 
 
 function App() {

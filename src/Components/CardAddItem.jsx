@@ -2,14 +2,14 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import Swal from 'sweetalert2'
 
-export const CardAddItem = ({ isOpen, close }) => {
+export const CardAddItem = ({ isOpen, close, reload }) => {
     const [name, setName] = useState()
     const [number, setNumber] = useState()
-    const [email, setEmail] = useState()
+    const [gmail, setEmail] = useState()
     const createProduct = async () => {
         try {
-            const response = await axios.post('https://back-end-optimal-technology.onrender.com/api/products', {
-                name, number, email
+            const response = await axios.post('https://bitbang-backend.onrender.com/api/contacts', {
+                name, number, gmail
             })
 
             if (response.data.msg) {
@@ -17,7 +17,11 @@ export const CardAddItem = ({ isOpen, close }) => {
                     title: response.data.msg,
                     icon: "success"
                 });
-                close()
+
+                reload()
+                setTimeout(()=>{
+                    close()
+                },700)
             }
         } catch (error) {
             console.log(error)

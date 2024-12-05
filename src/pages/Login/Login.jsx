@@ -2,7 +2,8 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-
+import Cookies from 'js-cookie'
+import axios from 'axios'
 export const Login = () => {
    const navigate = useNavigate()
    const {
@@ -10,6 +11,24 @@ export const Login = () => {
     handleSubmit,
     formState:{errors}}= useForm()
 
+    const onSubmit = handleSubmit(async(data)=>{
+  try {
+    console.log("holal")
+    const response = await axios.post('https://bitbang-backend.onrender.com/api/user/login',
+    {
+      gmailUser: data.email,
+      password: data.password
+    })
+    console.log(response.data)
+    Cookies.set('token', response.data.token, {expires:7})
+
+    setTimeout(()=>{
+      navigate('/contact')
+    },1000)
+  } catch (error) {
+    console.log(error)
+  }
+    })
     
   return (
     <section class="bg-gradient-to-r from-slate-950 to-slate-900 dark:bg-gray-900 ">
@@ -20,7 +39,7 @@ export const Login = () => {
               <h1 class="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                   Inicia Sesion 
               </h1>
-              <form class="space-y-4 md:space-y-6" action="#" >
+              <form class="space-y-4 md:space-y-6" action="#"  onSubmit={onSubmit}>
                   <div>
                       <label for="email" class=" block mb-2 text-xl font-medium text-gray-900 dark:text-white"> email</label>
                         <input {...register('email', {required:true})} type="email" name='email' id='email' className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="user@gmail.com" required="" />
@@ -44,9 +63,7 @@ export const Login = () => {
                       <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 text-gray-400">Forgot password?</a>
                   </div>
                   <button type="submit" class="w-full border-2 bg-primary-600 hover:bg-primary-700 text-gray-800 bg-gradient-to-r from-indigo-500 to-blue-500 focus:ring-4 text-xl focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                    <Link to={'/contact'}>
-                  Sign in
-                  </Link></button>
+                  Sign in</button>
                   <p class="text-sm font-light text-black   dark:text-gray-400">
                       No tienes cuenta?
                       <Link className="text-primary-600 font-bold hover:underline dark:text-primary-500" to={'/register'}> Registrate ahora</Link>

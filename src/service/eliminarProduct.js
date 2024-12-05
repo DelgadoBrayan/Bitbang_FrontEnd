@@ -13,7 +13,7 @@ export const drop = async(id)=>{
           }).then(async(result) => {
             
             if (result.isConfirmed) {
-                const response = await axios.delete(`https://back-end-optimal-technology.onrender.com/api/products/${id}`)
+                const response = await axios.delete(`https://bitbang-backend.onrender.com/api/contacts/${id}`)
             await  Swal.fire(response.data.msg, "", "success");
             } else if (result.isDenied) {
             await  Swal.fire("Changes are not saved", "", "info");

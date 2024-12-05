@@ -1,10 +1,13 @@
 import axios from "axios"
 import Swal from "sweetalert2";
-export const update = async(id,nameProduct)=>{
+export const update = async(id,name,number,gmail)=>{
     try {
-        const response = await axios.put(`https://back-end-optimal-technology.onrender.com/api/products/${id}`, {
-            nameProduct
+        const response = await axios.put(`https://bitbang-backend.onrender.com/api/contacts/${id}`, {
+            name,
+            number,
+            gmail
         });
+        if(response.data.contact)
         Swal.fire({
             title:response.data.msg,
             icon: "success"
