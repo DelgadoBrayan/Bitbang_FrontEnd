@@ -43,7 +43,10 @@ export const Login = () => {
                       </div>
                       <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 text-gray-400">Forgot password?</a>
                   </div>
-                  <button type="submit" class="w-full border-2 bg-primary-600 hover:bg-primary-700 text-gray-800 bg-gradient-to-r from-indigo-500 to-blue-500 focus:ring-4 text-xl focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                  <button type="submit" class="w-full border-2 bg-primary-600 hover:bg-primary-700 text-gray-800 bg-gradient-to-r from-indigo-500 to-blue-500 focus:ring-4 text-xl focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                    <Link to={'/contact'}>
+                  Sign in
+                  </Link></button>
                   <p class="text-sm font-light text-black   dark:text-gray-400">
                       No tienes cuenta?
                       <Link className="text-primary-600 font-bold hover:underline dark:text-primary-500" to={'/register'}> Registrate ahora</Link>
