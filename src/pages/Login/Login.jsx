@@ -13,13 +13,11 @@ export const Login = () => {
 
     const onSubmit = handleSubmit(async(data)=>{
   try {
-    console.log("holal")
     const response = await axios.post('https://bitbang-backend.onrender.com/api/user/login',
     {
       gmailUser: data.email,
       password: data.password
     })
-    console.log(response.data)
     Cookies.set('token', response.data.token, {expires:7})
 
     setTimeout(()=>{
@@ -31,8 +29,8 @@ export const Login = () => {
     })
     
   return (
-    <section class="bg-gradient-to-r from-slate-950 to-slate-900 dark:bg-gray-900 ">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section class="bg-gradient-to-r from-slate-950 to-slate-900 dark:bg-gray-900  min-h-screen">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen   min-h-screen lg:py-0">
      
       <div class="w-full rounded-lg shadow-white dark:border-white border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8 ">

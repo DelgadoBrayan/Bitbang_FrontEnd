@@ -24,8 +24,11 @@ export const AddContact = () => {
             Authorization: `Bearer ${token}`
           }
         })
-        setContacts(response.data)
-        setFilteredContacts(response.data)
+        const sortedContacts = response.data.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        )
+        setContacts(sortedContacts)
+        setFilteredContacts(sortedContacts)
       } catch (error) {
         console.log(error)
       }
@@ -37,18 +40,18 @@ export const AddContact = () => {
     setReload(!reload)
   }
   const handleSearchContact = (e) => {
-    const term = e.target.value.trim(); // Remueve espacios extra
+    const term = e.target.value.trim(); 
     setSearchTerm(term);
   
     if (term.length >= 3) {
       const filtered = contacts.filter((contact) => {
-        const name = contact.name?.toLowerCase() || ""; // Asegúrate de que `name` sea una cadena
-        const number = String(contact.number || ""); // Convierte `number` a cadena si no lo es
+        const name = contact.name?.toLowerCase() || ""; 
+        const number = String(contact.number || "")
         return name.includes(term.toLowerCase()) || number.includes(term);
       });
-      setFilteredContacts(filtered);
+      setFilteredContacts(filtered.sort((a, b) => a.name.localeCompare(b.name)));
     } else {
-      setFilteredContacts(contacts); // Si el término es menor a 3 caracteres, muestra todos
+      setFilteredContacts(contacts); 
     }
   };
   
